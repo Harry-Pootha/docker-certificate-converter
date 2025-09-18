@@ -1,6 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# SIGTERM SIGKILL
 handle_sigterm() {
   echo "SIGTERM received - setting stop signal"
   CHECK_STOP=1
