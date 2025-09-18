@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build ./docker/ --tag my-image-name:$(date +%s)
+
+# https://github.com/pgxn/docker-pgxn-tools/blob/main/.github/workflows/cicd.yml
+
+  publish:
+    name: Publish on Docker Hub
+    needs: ["build"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Echo
+        run: echo "Hey, this worked"
+      - name: Check out the repo
+        uses: actions/checkout@v4
