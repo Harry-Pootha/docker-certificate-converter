@@ -1,0 +1,12 @@
+name: openssl-converter
+
+services:
+  openssl-converter:
+    container_name: openssl-converter
+    build: ./docker/
+    image: docker-openssl:latest
+    environment:
+      - CERT_PASSPHRASE=PLACEHOLDER
+      - GENERATE=false
+    volumes:
+      - ./examples/:/openssl-certs
